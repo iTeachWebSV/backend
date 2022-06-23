@@ -20,7 +20,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
     if (builder.Environment.IsDevelopment())
     {
         string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        opt.UseSqlServer(connectionString);
+        opt.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString));
     }
     else
     {
