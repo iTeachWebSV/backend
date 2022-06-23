@@ -37,29 +37,7 @@ public class ModuleController : ControllerBase
        
         return Ok (moduleRepository.Post(moduleItems));
     }
-    /*
-    [HttpGet]
-    public ActionResult<List<CarritoItems>> Get()
-    {
-        List<CarritoItems> carrito = _context.CarritoItem.ToList();
-        return carrito == null? NoContent()
-            : Ok(carrito);
-    }*/
-
-   /* [HttpPost]
-    public ActionResult<DamItems> Post([FromBody] DamItems nombre_dam)
-    {
-        DamItems existingDamItems = _context.DamItem.Find(nombre_dam.id_dam);
-        if (existingDamItems != null)
-        {
-            return Conflict("Ya existe un elemento ");
-        }
-        _context.DamItem.Add(nombre_dam);
-        _context.SaveChanges();
-
-        string resourceUrl = Request.Path.ToString() + "/" + nombre_dam.id_dam;
-        return Created(resourceUrl, nombre_dam);
-    }*/
+    
 
     [HttpPut("{id:int}")]
     public ActionResult<ModuleItems> Update([FromBody] ModuleItems asignatura, int IdModule)
@@ -70,6 +48,8 @@ public class ModuleController : ControllerBase
             return NotFound("Elemento del Especialidad no encontrado");
         }
         moduleItemToUpdate.NameModule = asignatura.NameModule;
+        moduleItemToUpdate.EspModule = asignatura.EspModule;
+        moduleItemToUpdate.Descripcion = asignatura.Descripcion;
         moduleItemToUpdate.IdModule = asignatura.IdModule;
         _context.SaveChanges();
         string resourceUrl = Request.Path.ToString() + "/" + asignatura.IdModule;

@@ -21,7 +21,6 @@ public class EnrollmentController : ControllerBase
     [HttpGet]
     public ActionResult<List<EnrollmentItems>> Get(){
         return Ok(enrollmentRepository.Get());
-    //return Ok (_context.UserItem);
     }
 
     [HttpGet]
@@ -44,20 +43,14 @@ public class EnrollmentController : ControllerBase
         return  Ok(enrollmentRepository.GetByEsp(EspModule));
     }
 
-
-
-  
- [HttpPost]
+    [HttpPost]
     public ActionResult<EnrollmentItems> Post([FromBody] EnrollmentItems enrollmentItems)
     {
        
         return Ok (enrollmentRepository.Post(enrollmentItems));
     }
   
-
-
-
-        [HttpPut("{IdEnroll:int}")]
+    [HttpPut("{IdEnroll:int}")]
     public ActionResult<EnrollmentItems> Update([FromBody] EnrollmentItems enrollmentItems, int IdEnroll)
     {
         EnrollmentItems enrollmentItemToUpdate = _context.EnrollmentItem.Find(IdEnroll);
@@ -72,12 +65,8 @@ public class EnrollmentController : ControllerBase
 
         return Created(resourceUrl, enrollmentItems);
     }
-    /*[HttpDelete("{id:int}")]
-    public ActionResult Delete()
-    {
-        return Ok(enrollmentRepository);
-    }*/
-        [HttpDelete("{id:int}")]
+  
+    [HttpDelete("{id:int}")]
     public ActionResult Delete(int IdEnroll)
     {
         EnrollmentItems enrollmentItemToDelete = _context.EnrollmentItem.Find(IdEnroll);

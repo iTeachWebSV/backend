@@ -13,6 +13,14 @@ public class UserRepository
     {
         return this._context.UserItem.ToList();
     }
+
+public  UserItems GetByDni(int DniUser)
+{
+        var userItems = _context.UserItem.Find(DniUser);
+        return userItems;
+
+        
+}
     public UserItems Post(UserItems userItems)
     {
 

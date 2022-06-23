@@ -13,26 +13,22 @@ public class EnrollmentRepository
     {
         return this._context.EnrollmentItem.ToList();
     }
-//MIRAR
 
-public EnrollmentItems GetByUser(string NameUser)
-{
+
+    public EnrollmentItems GetByUser(string NameUser)
+    {
     return this._context.EnrollmentItem.Where(b => b.NameUser == NameUser)
         .FirstOrDefault();
-}
-public List< EnrollmentItems> GetByModule(string NameModule)
-{
+    }
+    public List< EnrollmentItems> GetByModule(string NameModule)
+    {
      return this._context.EnrollmentItem.Where(b => b.NameModule == NameModule).ToList();
-}
-public  List<EnrollmentItems> GetByEsp(string EspModule)
-{
+    }
+    public  List<EnrollmentItems> GetByEsp(string EspModule)
+    {
      return this._context.EnrollmentItem.Where(b => b.EspModule == EspModule).ToList();
         
-}
-
-
-
-
+    }
 
     public EnrollmentItems Post(EnrollmentItems enrollmentItems)
     {
@@ -71,7 +67,5 @@ public  List<EnrollmentItems> GetByEsp(string EspModule)
         _context.SaveChanges();
         return enrollmentItems;
 
-    
-
-}
+    }
 }

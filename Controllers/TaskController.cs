@@ -23,7 +23,6 @@ public class TaskController : ControllerBase
     
     public ActionResult<List<TaskItems>> Get(){
         return Ok(taskRepository.Get());
-    //return Ok (_context.UserItem);
     }
 
     [HttpGet]
@@ -42,30 +41,7 @@ public class TaskController : ControllerBase
         return Ok (taskRepository.Post(taskItems));
     }
 
-    /*[HttpGet]
-    public ActionResult<List<CarritoItems>> Get()
-    {
-        List<CarritoItems> carrito = _context.CarritoItem.ToList();
-        return carrito == null? NoContent()
-            : Ok(carrito);
-    }*/
 
-    /*[HttpPost]
-    public ActionResult<GradesItems> Post([FromBody] GradesItems calificacion )
-    {
-         GradesItems existingGradesItems= _context.GradesItem.Find(calificacion.id_ab);
-        if (existingGradesItems != null)
-        {
-            return Conflict("Ya existe un elemento ");
-        }
-        
-        _context.GradesItem.Add(calificacion);
-        _context.SaveChanges();
-
-        string resourceUrl = Request.Path.ToString() + "/" + calificacion.id_ab +calificacion.id_dam+calificacion.id_daw;
-        return Created(resourceUrl, calificacion);
-    }
-*/
     [HttpPut("{id:int}")]
     public ActionResult<TaskItems> Update([FromBody] TaskItems notas, int IdTask )
     {
@@ -76,7 +52,11 @@ public class TaskController : ControllerBase
         }
         taskItemToUpdate.ScoreTask = notas.ScoreTask;
         taskItemToUpdate.IdTask = notas.IdTask;
-        
+        taskItemToUpdate.NameTask = notas.NameTask;
+        taskItemToUpdate.NameUser = notas.NameUser;
+        taskItemToUpdate.NameModule = notas.NameModule;
+
+
         _context.SaveChanges();
         string resourceUrl = Request.Path.ToString() + "/" + notas.IdTask;
 

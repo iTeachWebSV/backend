@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using TaskItem;
 using ClassItem;
 using Especialidad.Data;
 
@@ -34,34 +33,12 @@ public class ClassController : ControllerBase
             : Ok(ClassItems);
     }
 
- [HttpPost]
+    [HttpPost]
     public ActionResult<ClassItems> Post([FromBody] ClassItems classItems)
     {
        
         return Ok (classRepository.Post(classItems));
     }
-    /*[HttpGet]
-    public ActionResult<List<CarritoItems>> Get()
-    {
-        List<CarritoItems> carrito = _context.CarritoItem.ToList();
-        return carrito == null? NoContent()
-            : Ok(carrito);
-    }*/
-
-   /* [HttpPost]
-    public ActionResult<DawItems> Post([FromBody] DawItems nombre_daw)
-    {
-         DawItems existingDawItems= _context.DawItem.Find(nombre_daw.id_daw);
-        if (existingDawItems != null)
-        {
-            return Conflict("Ya existe un elemento ");
-        }
-        _context.DawItem.Add(nombre_daw);
-        _context.SaveChanges();
-
-        string resourceUrl = Request.Path.ToString() + "/" + nombre_daw.id_daw;
-        return Created(resourceUrl, nombre_daw);
-    }*/
 
     [HttpPut("{id:int}")]
     public ActionResult<ClassItems> Update([FromBody] ClassItems classes, int IdClass)
@@ -73,6 +50,13 @@ public class ClassController : ControllerBase
         }
         classItemToUpdate.NameSemester = classes.NameSemester;
         classItemToUpdate.IdClass = classes.IdClass;
+        classItemToUpdate.NameUser = classes.NameUser;
+        classItemToUpdate.NameModule = classes.NameModule;
+        classItemToUpdate.NameEnroll = classes.NameEnroll;
+        classItemToUpdate.NameUser = classes.NameUser;
+        classItemToUpdate.Semester = classes.Semester;
+        classItemToUpdate.Role = classes.Role;
+
         _context.SaveChanges();
         string resourceUrl = Request.Path.ToString() + "/" + classes.IdClass;
 
